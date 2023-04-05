@@ -1,7 +1,11 @@
 {
   "name": "TwitterBackend",
   "packageManager": "yarn@3.2.1",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "nodemon": "^2.0.22"
   }
