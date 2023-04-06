@@ -28,6 +28,17 @@ class HashtagRepository {
         }
     }
 
+    async findByName (titleList) {
+        try {
+            const tags = await Hashtag.find({
+                 title: titleList
+                });   
+            return tags;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async destroy (id) {
         try {
             const tag = await Hashtag.findByIdAndRemove(id);
