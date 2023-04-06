@@ -10,6 +10,15 @@ class HashtagRepository {
         }
     }
 
+    async bulkCreate (data) {
+        try {
+            const tags = await Hashtag.insertMany(data)
+            return tags;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async get (id) {
         try {
             const tag = await Hashtag.findById(id);
