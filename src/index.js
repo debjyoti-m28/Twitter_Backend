@@ -1,17 +1,18 @@
 const express = require('express')
 const { PORT } = require('./config/serverConfig')
 const connetToMongoDB = require('./config/database')
-const {TweetService} = require("./services/index")
-const Hashtag = require("./models/hashtag")
+const bodyParser = require("body-parser");
+const apiRoute = require("./routes/index")
 const app = express()
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.use('/api', apiRoute);
 
 app.listen(PORT, async()=> {
     console.log(`Server running on port ${PORT}`)
     await connetToMongoDB();
     console.log("mongodb connected")
-    let tweetService = new TweetService()
-    const tweet = await tweetService.create({
-        content: '#fourst and #last tweet, I am very #excited'
-    })
-    console.log("tweet", tweet)
-})
+    
+});
