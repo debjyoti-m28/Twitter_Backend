@@ -3,7 +3,7 @@ const { SuccessCodes, ServerErrorCodes } = require("../utils/error-codes")
 const tweetService = new TweetService()
 
 const createTweet = async (req, res) => {
-        try {
+     try {
             const response = await tweetService.create(req.body)
             return res.status(SuccessCodes.CREATED).json({
                 sucess: true,
@@ -19,6 +19,6 @@ const createTweet = async (req, res) => {
                 err: error
             })
         }
-    }
+}
 
 module.exports = createTweet;
