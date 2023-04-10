@@ -12,7 +12,7 @@ class TweetRepository {
 
     async get (id) {
         try {
-            const tweet = await Tweet.findById(id);
+            const tweet = Tweet.findById(id);
             return tweet;
         } catch (error) {
             console.log(error);
