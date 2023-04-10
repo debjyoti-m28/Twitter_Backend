@@ -9,7 +9,7 @@ class LikeService {
     async toggleLike (modelId, modelType, userId) {
         try {
             if(modelType === "Tweet") {
-               var likeable = await this.tweetRepository.get(modelId).populate('likes');
+               var likeable = await this.tweetRepository.get(modelId);
             }
             else if (modelType === "Comment") {
                //TODO
@@ -28,7 +28,8 @@ class LikeService {
                 //remove like
                likeable.likes.pull(likeExists.id);
                await likeable.save();
-               await likeExists.remove();
+            //    await likeExists.remove();
+               await this.likeRepository.destroy(likeExists.id);
                var isAdded = false;
             }
             else{
