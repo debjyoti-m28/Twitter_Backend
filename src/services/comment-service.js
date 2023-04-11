@@ -15,7 +15,7 @@ class CommentService {
               var commentable = await this.commentRepository.get(modelId);
             }
             else{
-                console.log("Model type is not defined");
+                throw new Error("Model type is not defined");
             }
 
             const comment = await this.commentRepository.create({
@@ -23,12 +23,11 @@ class CommentService {
                 onModel: modelType,
                 commentable: modelId,
                 user: userId,
-                comments: []
             });
             commentable.comments.push(comment);
             await commentable.save();
             return comment;
-            
+
         } catch (error) {
            console.log(error);
         }
