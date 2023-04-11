@@ -36,6 +36,15 @@ class TweetRepository {
             console.log(error);
         }
     }
+
+    async find (id) {
+        try {
+            const tweet = await Tweet.findById(id);
+            return tweet;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = TweetRepository;
