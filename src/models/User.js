@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
+// password encryption
 userSchema.pre('save', function (next) {
     const user = this;
     const encryptedPassword = bcrypt.hashSync(user.password, SALT);
