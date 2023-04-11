@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { SALT } = require('../config/serverConfig');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -15,6 +16,13 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
 }, { timestamps: true });
+
+userSchema.pre('save', function (next) {
+    const user = this;
+    const encryptedPassword = bcrypt.hashSync(user.password, SALT);
+    user.password = encryptedPassword;
+    next();
+})
 
 const User = mongoose.model('User', userSchema)
 
